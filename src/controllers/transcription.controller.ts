@@ -10,7 +10,7 @@ export const transcribeAudio = async (req: Request, res: Response) => {
     }
 
     try {
-        const transcription = await transcribe();
+        const transcription = await transcribe(req.file.path);
 
         return res.status(200).json({
             message: "Audio processed successfully",
@@ -21,6 +21,10 @@ export const transcribeAudio = async (req: Request, res: Response) => {
                 size: req.file.size
             },
             transcription
+        });
+    } catch {
+        return res.status(500).json({
+            error: "Transcription failed"
         });
     } finally {
         await fs.unlink(req.file.path).catch(() => undefined);

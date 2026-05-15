@@ -117,6 +117,17 @@ Response example:
 
 ---
 
+## Example cURL Request
+
+```bash
+curl -X POST http://localhost:3000/api/transcribe \
+  -F "file=@test-files/alloy.wav"
+```
+
+This example uploads a WAV file and returns the transcription response with timestamped segments.
+
+---
+
 ## Design Decisions
 
 ### Why mock transcription?
@@ -282,7 +293,13 @@ Implementation and design decisions were written and validated manually.
 
 ## Run locally
 
-Install:
+Requires:
+
+```txt
+Node.js >= 18
+```
+
+Install dependencies:
 
 ```bash
 npm install

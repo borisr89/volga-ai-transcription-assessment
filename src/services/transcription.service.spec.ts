@@ -2,16 +2,25 @@ import { describe, expect, it } from "@jest/globals";
 import { transcribe } from "./transcription.service";
 
 describe("transcription.service", () => {
-    it("returns transcript with timestamped segments", async () => {
-        const result = await transcribe();
+    it("returns a valid transcription result with timestamped segments", async () => {
+        const result = await transcribe("test-files/alloy.wav");
 
-        expect(result.transcript).toContain("The sun rises in the east");
-        expect(result.segments).toHaveLength(2);
-        expect(result.segments[0]).toEqual({
-            start: 0,
-            end: 3,
-            text: "The sun rises in the east and sets in the west."
+        expect(typeof result.transcript).toBe("string");
+        expect(result.transcript.length).toBeGreaterThan(0);
+
+        expect(Array.isArray(result.segments)).toBe(true);
+        expect(result.segments.length).toBeGreaterThan(0);
+
+        expect(result.segments[0]).toMatchObject({
+            start: expect.any(Number),
+            end: expect.any(Number),
+            text: expect.any(String)
         });
-        expect(result.metadata.provider).toBe("mock");
+
+        expect(result.metadata).toMatchObject({
+            provider: expect.any(String),
+            language: expect.any(String),
+            durationSeconds: expect.any(Number)
+        });
     });
 });

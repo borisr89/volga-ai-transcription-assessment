@@ -13,3 +13,7 @@ export type TranscriptionResult = {
         durationSeconds: number;
     }
 };
+
+export interface Transcriber {
+    transcribe(filePath: string): Promise<TranscriptionResult>;
+};

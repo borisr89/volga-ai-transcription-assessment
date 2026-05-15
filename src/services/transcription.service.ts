@@ -1,7 +1,8 @@
-import { mockTranscribe } from "../adapters/mockTranscriber";
+import { MockTranscriber } from "../adapters/mockTranscriber";
 import { TranscriptionResult } from "../types/transcription.types";
 
-export const transcribe = async (): Promise<TranscriptionResult> => {
-    const result = await mockTranscribe();
-    return result;
-};
+export const transcriber = new MockTranscriber();
+
+export const transcribe = async (filePath: string): Promise<TranscriptionResult> => {
+    return transcriber.transcribe(filePath);
+}
