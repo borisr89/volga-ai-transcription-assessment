@@ -204,24 +204,15 @@ Production systems should additionally inspect actual audio headers and codecs.
 
 ---
 
-## Error Handling
+## Error and Failure Handling
 
 Implemented:
 
 - invalid file type
 - missing file
 - oversized uploads
-- structured JSON errors
-
----
-
-## Failure Handling
-
-Current implementation handles:
-
-- invalid file type
-- missing file
 - upload failures
+- structured JSON errors
 
 Temporary uploaded files are removed after processing to avoid orphaned artifacts.
 
