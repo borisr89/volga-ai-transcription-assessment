@@ -1,3 +1,4 @@
+import fs from "fs/promises";
 import { Request, Response } from "express";
 import { transcribe } from "../services/transcription.service";
 
@@ -8,16 +9,20 @@ export const transcribeAudio = async (req: Request, res: Response) => {
         });
     }
 
-    const transcription = await transcribe();
+    try {
+        const transcription = await transcribe();
 
-    return res.status(200).json({
-        message: "Audio processed successfully",
-        file: {
-            originalName: req.file.originalname,
-            storedName: req.file.filename,
-            mimeType: req.file.mimetype,
-            size: req.file.size
-        },
-        transcription
-    });
+        return res.status(200).json({
+            message: "Audio processed successfully",
+            file: {
+                originalName: req.file.originalname,
+                storedName: req.file.filename,
+                mimeType: req.file.mimetype,
+                size: req.file.size
+            },
+            transcription
+        });
+    } finally {
+        await fs.unlink(req.file.path).catch(() => undefined);
+    }
 };
