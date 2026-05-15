@@ -1,0 +1,45 @@
+{
+  "name": "volga-ai-transcription-assessment",
+  "version": "1.0.0",
+  "description": "Node.js/TypeScript audio transcription assessment with mock STT pipeline, timestamped segments, and production design notes.",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/borisr89/volga-ai-transcription-assessment.git"
+  },
+  "keywords": [
+    "nodejs",
+    "typescript",
+    "express",
+    "transcription",
+    "assessment"
+  ],
+  "author": "Boris Ruzic",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/borisr89/volga-ai-transcription-assessment/issues"
+  },
+  "homepage": "https://github.com/borisr89/volga-ai-transcription-assessment#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "multer": "^2.1.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.1.0",
+    "@types/node": "^25.8.0",
+    "ts-node-dev": "^2.0.0",
+    "tsx": "^4.22.0",
+    "typescript": "^6.0.3"
+  }
+}
