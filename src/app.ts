@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import transcriptionRoutes from "./routes/transcription.routes";
+import { errorHandler } from "./middleware/error.middleware";
 
 const app = express();
 
@@ -15,5 +16,7 @@ app.get("/health", (_, res) => {
 });
 
 app.use("/api", transcriptionRoutes);
+
+app.use(errorHandler);
 
 export default app;

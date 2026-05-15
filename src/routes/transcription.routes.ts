@@ -1,11 +1,9 @@
 import { Router } from "express";
+import { uploadAudio } from "../middleware/upload.middleware";
+import { transcribeAudio } from "../controllers/transcription.controller";
 
 const router = Router();
 
-router.get("/transcribe", (_, res) => {
-    res.json({
-        message: "Transcription route works"
-    });
-});
+router.post("/transcribe", uploadAudio.single("file"), transcribeAudio);
 
 export default router;
